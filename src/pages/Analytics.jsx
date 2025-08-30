@@ -5,7 +5,7 @@ import toast from 'react-hot-toast';
 
 const Analytics = () => {
   const [timeRange, setTimeRange] = useState('month');
-  const [selectedMetric, setSelectedMetric] = useState('attendance');
+
 
   // Sample data - in real app, fetch from Firebase
   const departmentData = [

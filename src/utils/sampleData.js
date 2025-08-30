@@ -77,8 +77,8 @@ export const addSampleData = async () => {
       await addDoc(collection(db, 'leaveRequests'), request);
     }
 
-    console.log('Sample data added successfully!');
+
   } catch (error) {
-    console.error('Error adding sample data:', error);
+    throw error;
   }
 };

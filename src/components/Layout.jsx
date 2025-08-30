@@ -80,7 +80,7 @@ const Layout = ({ children }) => {
       searchEmployees(searchTerm);
     }, 300);
     return () => clearTimeout(timeoutId);
-  }, [searchTerm]);
+  }, [searchTerm]); // searchEmployees is defined inline, so this is acceptable
 
   useEffect(() => {
     fetchNotifications();
@@ -104,7 +104,7 @@ const Layout = ({ children }) => {
         {
           id: 'welcome',
           type: 'system',
-          title: 'Welcome to HR Portal Pro',
+          title: 'Welcome to WorkSphere',
           message: 'Your account is now active',
           time: '1 hour ago',
           unread: true
@@ -142,7 +142,7 @@ const Layout = ({ children }) => {
       {/* Sidebar */}
       <div className={`${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} fixed inset-y-0 left-0 z-50 w-64 bg-white dark:bg-gray-800 shadow-lg transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0`}>
         <div className="flex items-center justify-between h-16 px-6 border-b border-gray-200 dark:border-gray-700">
-          <h1 className="text-xl font-bold text-gray-900 dark:text-white">HR Portal Pro</h1>
+          <h1 className="text-xl font-bold text-gray-900 dark:text-white">WorkSphere</h1>
           <button onClick={() => setSidebarOpen(false)} className="lg:hidden">
             <X className="h-6 w-6" />
           </button>
@@ -184,15 +184,15 @@ const Layout = ({ children }) => {
                 <Menu className="h-6 w-6" />
               </button>
               
-              <div className="relative">
+              <div className="relative hidden sm:block">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                 <input
                   type="text"
-                  placeholder="Search employees, tasks..."
+                  placeholder="Search employees..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   onFocus={() => searchTerm && setShowSearchResults(true)}
-                  className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent w-64"
+                  className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent w-48 lg:w-64"
                 />
                 
                 {/* Search Results Dropdown */}
@@ -234,7 +234,10 @@ const Layout = ({ children }) => {
               </div>
             </div>
 
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2 sm:space-x-4">
+              <button className="sm:hidden p-2 text-gray-600 hover:text-gray-900">
+                <Search className="h-5 w-5" />
+              </button>
               <div className="relative">
                 <button 
                   onClick={() => setShowNotifications(!showNotifications)}
@@ -326,7 +329,7 @@ const Layout = ({ children }) => {
                       {userProfile?.name?.split(' ').map(n => n[0]).join('') || 'U'}
                     </span>
                   </div>
-                  <div className="text-right">
+                  <div className="text-right hidden sm:block">
                     <p className="text-sm font-medium text-gray-900">
                       {userProfile?.name || 'User'}
                     </p>
@@ -413,7 +416,7 @@ const Layout = ({ children }) => {
         </header>
 
         {/* Page content */}
-        <main className="flex-1 overflow-auto p-6">
+        <main className="flex-1 overflow-auto p-4 sm:p-6">
           {children}
         </main>
       </div>

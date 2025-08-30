@@ -25,10 +25,10 @@ export const createAdminUser = async () => {
       updatedAt: new Date()
     });
     
-    console.log('Admin user created successfully!');
+
     return true;
   } catch (error) {
-    console.error('Error creating admin user:', error);
+    // Error handled by return false
     return false;
   }
 };

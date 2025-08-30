@@ -26,7 +26,7 @@ const Dashboard = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [showLeaveModal, setShowLeaveModal] = useState(false);
   const [showEmployeeModal, setShowEmployeeModal] = useState(false);
-  const [showNotifications, setShowNotifications] = useState(false);
+
   const [unreadCount] = useState(3); // Mock unread count
   const [leaveForm, setLeaveForm] = useState({
     type: '',
@@ -139,7 +139,7 @@ const Dashboard = () => {
         </div>
         <div className="mt-4 sm:mt-0 flex space-x-3">
           <button 
-            onClick={() => setShowNotifications(!showNotifications)}
+            onClick={() => navigate('/leave-management')}
             className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 bg-white hover:bg-gray-50"
           >
             <Bell className="h-4 w-4 mr-2" />
@@ -237,58 +237,58 @@ const Dashboard = () => {
       </div>
 
       {/* Quick Actions */}
-      <div className="bg-white rounded-lg shadow p-6">
+      <div className="bg-white rounded-lg shadow p-4 sm:p-6">
         <h3 className="text-lg font-medium text-gray-900 mb-4">Quick Actions</h3>
-        <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
           <button 
             onClick={() => setShowEmployeeModal(true)}
-            className="p-4 border border-gray-200 rounded-lg hover:bg-gray-50 text-center transition-colors"
+            className="p-3 sm:p-4 border border-gray-200 rounded-lg hover:bg-gray-50 text-center transition-colors"
           >
-            <Users className="h-6 w-6 mx-auto mb-2 text-blue-600" />
-            <span className="text-sm font-medium">Add Employee</span>
+            <Users className="h-5 w-5 sm:h-6 sm:w-6 mx-auto mb-1 sm:mb-2 text-blue-600" />
+            <span className="text-xs sm:text-sm font-medium">Add Employee</span>
           </button>
           <button 
             onClick={() => setShowLeaveModal(true)}
-            className="p-4 border border-gray-200 rounded-lg hover:bg-gray-50 text-center transition-colors"
+            className="p-3 sm:p-4 border border-gray-200 rounded-lg hover:bg-gray-50 text-center transition-colors"
           >
-            <Calendar className="h-6 w-6 mx-auto mb-2 text-green-600" />
-            <span className="text-sm font-medium">Request Leave</span>
+            <Calendar className="h-5 w-5 sm:h-6 sm:w-6 mx-auto mb-1 sm:mb-2 text-green-600" />
+            <span className="text-xs sm:text-sm font-medium">Request Leave</span>
           </button>
           <button 
             onClick={() => navigate('/employees')}
-            className="p-4 border border-gray-200 rounded-lg hover:bg-gray-50 text-center transition-colors"
+            className="p-3 sm:p-4 border border-gray-200 rounded-lg hover:bg-gray-50 text-center transition-colors"
           >
-            <Clock className="h-6 w-6 mx-auto mb-2 text-yellow-600" />
-            <span className="text-sm font-medium">View Employees</span>
+            <Clock className="h-5 w-5 sm:h-6 sm:w-6 mx-auto mb-1 sm:mb-2 text-yellow-600" />
+            <span className="text-xs sm:text-sm font-medium">View Employees</span>
           </button>
           <button 
             onClick={() => navigate('/analytics')}
-            className="p-4 border border-gray-200 rounded-lg hover:bg-gray-50 text-center transition-colors"
+            className="p-3 sm:p-4 border border-gray-200 rounded-lg hover:bg-gray-50 text-center transition-colors"
           >
-            <TrendingUp className="h-6 w-6 mx-auto mb-2 text-purple-600" />
-            <span className="text-sm font-medium">View Reports</span>
+            <TrendingUp className="h-5 w-5 sm:h-6 sm:w-6 mx-auto mb-1 sm:mb-2 text-purple-600" />
+            <span className="text-xs sm:text-sm font-medium">View Reports</span>
           </button>
           <button 
             onClick={handleAddSampleData}
-            className="p-4 border border-gray-200 rounded-lg hover:bg-gray-50 text-center transition-colors"
+            className="p-3 sm:p-4 border border-gray-200 rounded-lg hover:bg-gray-50 text-center transition-colors"
           >
-            <Database className="h-6 w-6 mx-auto mb-2 text-indigo-600" />
-            <span className="text-sm font-medium">Add Sample Data</span>
+            <Database className="h-5 w-5 sm:h-6 sm:w-6 mx-auto mb-1 sm:mb-2 text-indigo-600" />
+            <span className="text-xs sm:text-sm font-medium">Add Sample Data</span>
           </button>
           <button 
             onClick={handleCreateAdmin}
-            className="p-4 border border-gray-200 rounded-lg hover:bg-gray-50 text-center transition-colors"
+            className="p-3 sm:p-4 border border-gray-200 rounded-lg hover:bg-gray-50 text-center transition-colors"
           >
-            <Users className="h-6 w-6 mx-auto mb-2 text-red-600" />
-            <span className="text-sm font-medium">Create Admin</span>
+            <Users className="h-5 w-5 sm:h-6 sm:w-6 mx-auto mb-1 sm:mb-2 text-red-600" />
+            <span className="text-xs sm:text-sm font-medium">Create Admin</span>
           </button>
         </div>
       </div>
 
       {/* Leave Request Modal */}
       {showLeaveModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-md mx-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg p-4 sm:p-6 w-full max-w-md">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-lg font-medium text-gray-900">Request Leave</h2>
               <button onClick={() => setShowLeaveModal(false)}>
@@ -354,8 +354,8 @@ const Dashboard = () => {
 
       {/* Add Employee Modal */}
       {showEmployeeModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-md mx-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg p-4 sm:p-6 w-full max-w-md">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-lg font-medium text-gray-900">Add Employee</h2>
               <button onClick={() => setShowEmployeeModal(false)}>
